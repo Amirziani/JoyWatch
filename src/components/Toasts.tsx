@@ -3,9 +3,9 @@ import type { Notice } from "@/lib/client/session";
 import { t } from "@/lib/i18n";
 
 const tone = {
-  info: "bg-plum-900/95 text-cream-50 ring-white/10",
-  warn: "bg-peach-300 text-plum-900 ring-peach-400",
-  error: "bg-rose-500 text-white ring-rose-400",
+  info: "bg-cream-50/95 text-walnut-800 ring-walnut-800/10",
+  warn: "bg-glow-300 text-walnut-900 ring-glow-400",
+  error: "bg-clay-500 text-white ring-clay-400",
 } as const;
 
 export function Toasts({ notices, onDismiss }: { notices: Notice[]; onDismiss: (id: number) => void }) {

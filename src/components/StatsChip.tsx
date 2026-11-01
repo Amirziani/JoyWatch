@@ -4,7 +4,7 @@ import { t } from "@/lib/i18n";
 
 export function StatsChip({ stats }: { stats: StatsSample | null }) {
   return (
-    <div className="pointer-events-none rounded-full bg-plum-900/80 px-3.5 py-1.5 font-mono text-xs font-bold text-cream-50 shadow-cozy ring-1 ring-white/10" role="status" aria-label={t("stats.label")}>
+    <div className="pointer-events-none rounded-full bg-walnut-900/80 px-3.5 py-1.5 font-mono text-xs font-bold text-cream-50 shadow-cozy ring-1 ring-white/10" role="status" aria-label={t("stats.label")}>
       {stats && stats.width ? (
         <>
           {stats.width}×{stats.height} · {stats.fps} {t("stats.fps")} · {fmtMbps(stats.kbps)} {t("stats.mbps")} ·{" "}

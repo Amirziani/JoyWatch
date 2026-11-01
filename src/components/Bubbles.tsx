@@ -94,24 +94,24 @@ export function Bubbles({ self, partner, visible, bottomReserve = 96 }: { self: 
               title={who === "self" ? t("bubble.you") : p.name}
               className={`group pointer-events-auto absolute left-0 top-0 touch-none select-none rounded-full shadow-cozy ${
                 drag?.who === who ? "cursor-grabbing" : "cursor-grab transition-transform duration-300 ease-out"
-              } ${p.speaking ? "ring-4 ring-peach-300" : "ring-2 ring-white/30"}`}
+              } ${p.speaking ? "ring-4 ring-glow-300" : "ring-2 ring-white/30"}`}
               style={{ width: S, height: S, transform: `translate3d(${pos.x}px, ${pos.y}px, 0)` }}
             >
-              <div className="relative h-full w-full overflow-hidden rounded-full bg-plum-700">
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-walnut-700">
                 {p.camOn && p.camTrack ? (
                   <TrackVideo track={p.camTrack} mirrored={who === "self"} className="h-full w-full object-cover" />
                 ) : (
-                  <div className="grid h-full w-full place-items-center bg-gradient-to-br from-peach-300 to-rose-400 text-3xl font-extrabold text-white">
+                  <div className="grid h-full w-full place-items-center bg-gradient-to-br from-glow-300 to-clay-400 text-3xl font-extrabold text-white">
                     {(p.name || "?").trim().charAt(0).toUpperCase()}
                   </div>
                 )}
               </div>
               {!p.micOn && (
-                <span className="absolute -bottom-1 -end-1 grid h-7 w-7 place-items-center rounded-full bg-rose-500 text-white ring-2 ring-plum-900" aria-label={t("bubble.muted")}>
+                <span className="absolute -bottom-1 -end-1 grid h-7 w-7 place-items-center rounded-full bg-clay-500 text-white ring-2 ring-cream-50" aria-label={t("bubble.muted")}>
                   <MicOffIcon width={14} height={14} />
                 </span>
               )}
-              <span className="absolute -top-2 start-1/2 max-w-[9rem] -translate-x-1/2 truncate rounded-full bg-plum-900/85 px-2 py-0.5 text-[11px] font-bold text-cream-50 opacity-0 transition group-hover:opacity-100">
+              <span className="absolute -top-2 start-1/2 max-w-[9rem] -translate-x-1/2 truncate rounded-full bg-walnut-900/85 px-2 py-0.5 text-[11px] font-bold text-cream-50 opacity-0 transition group-hover:opacity-100">
                 {who === "self" ? t("bubble.you") : p.name}
               </span>
             </div>

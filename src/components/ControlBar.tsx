@@ -44,7 +44,7 @@ export function ControlBar(p: Props) {
   const close = () => setMenu(null);
 
   return (
-    <div className="flex flex-col gap-3 bg-gradient-to-t from-plum-950/90 via-plum-950/60 to-transparent px-3 pb-4 pt-10 text-cream-50 sm:px-6">
+    <div className="mx-auto mb-3 flex w-[calc(100%-1.5rem)] max-w-4xl flex-col gap-3 rounded-4xl bg-cream-50/[.97] p-3 text-walnut-800 shadow-cozy ring-1 ring-walnut-800/10 backdrop-blur-md sm:p-4">
       {snap.movie.kind === "file" && <PlaybackBar ctl={ctl} snap={snap} />}
 
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
@@ -58,7 +58,7 @@ export function ControlBar(p: Props) {
           {p.bubbles ? <BubbleIcon /> : <BubbleOffIcon />}
         </button>
 
-        <span className="mx-1 hidden h-7 w-px bg-white/15 sm:block" />
+        <span className="mx-1 hidden h-7 w-px bg-walnut-800/15 sm:block" />
 
         <div className="relative">
           <button className={`ctl ${menu === "volume" ? "ctl-on" : ""}`} onClick={() => toggle("volume")} aria-expanded={menu === "volume"} aria-label={t("ctl.volume")} title={t("ctl.volume")}>
@@ -110,7 +110,7 @@ export function ControlBar(p: Props) {
           {p.fullscreen ? <ExitFullscreenIcon /> : <FullscreenIcon />}
         </button>
 
-        <span className="mx-1 hidden h-7 w-px bg-white/15 sm:block" />
+        <span className="mx-1 hidden h-7 w-px bg-walnut-800/15 sm:block" />
 
         {isHost ? (
           <div className="relative">
@@ -120,7 +120,7 @@ export function ControlBar(p: Props) {
             <Popover open={confirmEnd} onClose={() => setConfirmEnd(false)} className="sm:-end-4 sm:w-72">
               <p className="mb-3 text-sm font-bold">{t("end.confirm")}</p>
               <div className="flex gap-2">
-                <button className="btn flex-1 bg-rose-500 text-white" onClick={p.onEnd}>{t("end.yes")}</button>
+                <button className="btn flex-1 bg-clay-500 text-white" onClick={p.onEnd}>{t("end.yes")}</button>
                 <button className="btn-ghost-dark flex-1" onClick={p.onLeave}>{t("end.justLeave")}</button>
               </div>
             </Popover>

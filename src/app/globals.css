@@ -12,10 +12,10 @@ body {
 }
 
 body {
-  @apply bg-cream-50 font-sans text-plum-800 antialiased;
+  @apply bg-cream-50 font-sans text-walnut-800 antialiased;
   background-image:
-    radial-gradient(1200px 600px at 10% -10%, rgba(255, 205, 178, 0.55), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, rgba(244, 118, 143, 0.18), transparent 60%);
+    radial-gradient(1200px 600px at 10% -10%, rgba(248, 207, 127, 0.45), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(147, 176, 122, 0.22), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -25,37 +25,37 @@ body {
       focus-visible:outline-none focus-visible:shadow-glow disabled:cursor-not-allowed disabled:opacity-50 active:scale-[.97];
   }
   .btn-primary {
-    @apply btn bg-gradient-to-br from-peach-400 to-rose-400 text-white shadow-cozy hover:brightness-105;
+    @apply btn bg-gradient-to-br from-glow-400 to-clay-400 text-walnut-900 shadow-cozy hover:brightness-105;
   }
   .btn-soft {
-    @apply btn bg-peach-100 text-plum-700 hover:bg-peach-200;
+    @apply btn bg-glow-100 text-walnut-700 hover:bg-glow-200;
   }
   .btn-ghost-dark {
-    @apply btn bg-white/10 text-cream-50 hover:bg-white/20;
+    @apply btn bg-walnut-800/10 text-walnut-800 hover:bg-walnut-800/15;
   }
   .card {
-    @apply rounded-4xl bg-white/80 p-6 shadow-cozy ring-1 ring-peach-200/60 backdrop-blur sm:p-8;
+    @apply rounded-4xl bg-white/80 p-6 shadow-cozy ring-1 ring-glow-200/60 backdrop-blur sm:p-8;
   }
   .input {
-    @apply w-full rounded-2xl border-2 border-peach-200 bg-cream-50 px-4 py-2.5 text-base text-plum-800 placeholder:text-plum-300
-      focus:border-peach-400 focus:outline-none focus:shadow-glow;
+    @apply w-full rounded-2xl border-2 border-glow-200 bg-cream-50 px-4 py-2.5 text-base text-walnut-800 placeholder:text-walnut-300
+      focus:border-glow-400 focus:outline-none focus:shadow-glow;
   }
   .label {
-    @apply mb-1.5 block text-sm font-bold text-plum-700;
+    @apply mb-1.5 block text-sm font-bold text-walnut-700;
   }
   /* Controls in the room */
   .ctl {
-    @apply relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-cream-50 transition
-      hover:bg-white/20 focus-visible:outline-none focus-visible:shadow-glow active:scale-95 disabled:opacity-40;
+    @apply relative inline-flex h-11 w-11 items-center justify-center rounded-full bg-walnut-800/10 text-walnut-800 transition
+      hover:bg-walnut-800/15 focus-visible:outline-none focus-visible:shadow-glow active:scale-95 disabled:opacity-40;
   }
   .ctl-on {
-    @apply bg-peach-400 text-plum-900 hover:bg-peach-300;
+    @apply bg-glow-400 text-walnut-900 hover:bg-glow-300;
   }
   .ctl-off {
-    @apply bg-rose-500 text-white hover:bg-rose-400;
+    @apply bg-clay-500 text-white hover:bg-clay-400;
   }
   .popover {
-    @apply absolute bottom-[calc(100%+0.75rem)] z-30 w-72 max-sm:fixed max-sm:inset-x-3 max-sm:bottom-32 max-sm:w-auto max-h-[70vh] overflow-y-auto rounded-3xl bg-plum-900/95 p-4 text-cream-50 shadow-cozy ring-1 ring-white/10 backdrop-blur animate-popin;
+    @apply absolute bottom-[calc(100%+0.75rem)] z-30 w-72 max-sm:fixed max-sm:inset-x-3 max-sm:bottom-32 max-sm:w-auto max-h-[70vh] overflow-y-auto rounded-3xl bg-cream-50/95 p-4 text-walnut-800 shadow-cozy ring-1 ring-walnut-800/10 backdrop-blur animate-popin;
   }
 }
 
@@ -66,7 +66,7 @@ input[type="range"].slider {
   height: 8px;
   width: 100%;
   border-radius: 999px;
-  background: linear-gradient(to right, #ffb18a var(--fill, 50%), rgba(255, 255, 255, 0.18) var(--fill, 50%));
+  background: linear-gradient(to right, #f2b95a var(--fill, 50%), rgba(98, 73, 58, 0.18) var(--fill, 50%));
   outline: none;
 }
 input[type="range"].slider::-webkit-slider-thumb {
@@ -74,20 +74,20 @@ input[type="range"].slider::-webkit-slider-thumb {
   height: 20px;
   width: 20px;
   border-radius: 999px;
-  background: #fff3e3;
-  border: 3px solid #ff9566;
+  background: #fffaf2;
+  border: 3px solid #e39b34;
   cursor: pointer;
 }
 input[type="range"].slider::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 999px;
-  background: #fff3e3;
-  border: 3px solid #ff9566;
+  background: #fffaf2;
+  border: 3px solid #e39b34;
   cursor: pointer;
 }
 input[type="range"].slider:focus-visible {
-  box-shadow: 0 0 0 3px rgba(255, 177, 138, 0.55);
+  box-shadow: 0 0 0 3px rgba(242, 185, 90, 0.55);
 }
 
 .idle-hide-cursor {

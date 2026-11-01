@@ -77,11 +77,11 @@ export function PlaybackBar({ ctl, snap }: { ctl: SessionController; snap: Snaps
           onBlur={commit}
         />
         <span className="w-12 shrink-0 font-mono text-xs font-bold tabular-nums opacity-70">{fmtTime(duration)}</span>
-        <button className="ctl shrink-0 text-rose-400" onClick={ctl.heart} aria-label={t("playback.heart")} title={t("playback.heart")}>
+        <button className="ctl shrink-0 text-clay-400" onClick={ctl.heart} aria-label={t("playback.heart")} title={t("playback.heart")}>
           <HeartIcon width={20} height={20} />
         </button>
       </div>
-      <p className="min-h-4 truncate ps-1 text-xs font-semibold text-peach-200" aria-live="polite">
+      <p className="min-h-4 truncate ps-1 text-xs font-semibold text-walnut-500" aria-live="polite">
         {pb?.fileName && <span className="opacity-70">{pb.fileName}</span>}
         {who && <span> · {who}</span>}
       </p>

@@ -5,8 +5,8 @@ const color: Record<Quality, string> = {
   excellent: "bg-emerald-400",
   good: "bg-lime-300",
   poor: "bg-amber-400",
-  lost: "bg-rose-500",
-  unknown: "bg-plum-300",
+  lost: "bg-clay-500",
+  unknown: "bg-walnut-300",
 };
 const label: Record<Quality, MessageKey> = {
   excellent: "conn.excellent",

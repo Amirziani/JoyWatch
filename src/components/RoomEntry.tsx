@@ -6,6 +6,7 @@ import { checkBrowser, type BrowserSupport } from "@/lib/client/browser";
 import type { Creds } from "@/lib/client/session";
 import { KEYS, store, type HostCreds } from "@/lib/client/storage";
 import { t } from "@/lib/i18n";
+import { CozyBackdrop } from "./Decor";
 import { Logo } from "./Logo";
 import { RoomView } from "./RoomView";
 
@@ -83,17 +84,19 @@ export function RoomEntry({ roomId }: { roomId: string }) {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-5 py-10">
+    <>
+    <CozyBackdrop />
+    <main className="relative z-10 mx-auto flex min-h-screen max-w-md flex-col justify-center px-5 py-10">
       <div className="mb-6 flex justify-center">
         <Link href="/" aria-label={t("app.name")}><Logo /></Link>
       </div>
 
-      {stage === "loading" && <div className="card text-center font-bold text-plum-500" role="status">{t("gate.checking")}</div>}
+      {stage === "loading" && <div className="card text-center font-bold text-walnut-500" role="status">{t("gate.checking")}</div>}
 
       {stage === "unsupported" && (
         <div className="card text-center">
           <h1 className="text-2xl font-extrabold">{t("gate.unsupportedTitle")}</h1>
-          <p className="mt-2 text-plum-500">{t("gate.unsupportedBody")}</p>
+          <p className="mt-2 text-walnut-500">{t("gate.unsupportedBody")}</p>
         </div>
       )}
 
@@ -101,7 +104,7 @@ export function RoomEntry({ roomId }: { roomId: string }) {
         <div className="card text-center">
           <div className="text-5xl" aria-hidden>🫥</div>
           <h1 className="mt-3 text-2xl font-extrabold">{t("gate.missingTitle")}</h1>
-          <p className="mt-2 text-plum-500">{error ?? t("gate.missingBody")}</p>
+          <p className="mt-2 text-walnut-500">{error ?? t("gate.missingBody")}</p>
           <Link href="/" className="btn-primary mt-6">{t("gate.makeNew")}</Link>
         </div>
       )}
@@ -109,7 +112,7 @@ export function RoomEntry({ roomId }: { roomId: string }) {
       {stage === "gate" && (
         <form onSubmit={enter} className="card">
           <h1 className="text-2xl font-extrabold">{host ? t("gate.hostTitle") : t("gate.guestTitle")}</h1>
-          <p className="mt-1 text-sm text-plum-500">{host ? t("gate.hostHint") : t("gate.guestHint")}</p>
+          <p className="mt-1 text-sm text-walnut-500">{host ? t("gate.hostHint") : t("gate.guestHint")}</p>
           <div className="mt-5 space-y-4">
             <div>
               <label className="label" htmlFor="g-name">{t("common.yourName")}</label>
@@ -121,12 +124,13 @@ export function RoomEntry({ roomId }: { roomId: string }) {
                 <input id="g-pw" type="password" className="input" value={password} autoFocus={!!name} autoComplete="off" onChange={(e) => setPassword(e.target.value)} />
               </div>
             )}
-            {error && <p role="alert" className="rounded-2xl bg-rose-400/15 px-4 py-2 text-sm font-semibold text-rose-500">{error}</p>}
+            {error && <p role="alert" className="rounded-2xl bg-clay-400/15 px-4 py-2 text-sm font-semibold text-clay-500">{error}</p>}
             <button className="btn-primary w-full">{host ? t("gate.enterHost") : t("gate.enterGuest")}</button>
-            <p className="text-center text-xs text-plum-500">{t("gate.permissionNote")}</p>
+            <p className="text-center text-xs text-walnut-500">{t("gate.permissionNote")}</p>
           </div>
         </form>
       )}
     </main>
+    </>
   );
 }

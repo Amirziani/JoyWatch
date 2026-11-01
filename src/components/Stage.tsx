@@ -5,6 +5,7 @@ import type { BrowserSupport } from "@/lib/client/browser";
 import { isMac } from "@/lib/client/browser";
 import { t } from "@/lib/i18n";
 import { FileIcon, ShareIcon } from "./Icons";
+import { Ivy, BasketPlant, Lights } from "./Decor";
 import { InviteCard } from "./Menus";
 import { TrackVideo } from "./TrackVideo";
 
@@ -44,7 +45,7 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
 
   return (
     <div
-      className="absolute inset-0 bg-plum-950"
+      className={`absolute inset-0 ${kind === "none" ? "bg-gradient-to-b from-cream-100 via-cream-50 to-sage-100" : "bg-walnut-950"}`}
       onDragOver={(e) => {
         if (!isHost) return;
         e.preventDefault();
@@ -63,13 +64,23 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
 
       {kind === "screen" && owner === "self" && (
         <div className="pointer-events-none absolute inset-x-0 top-20 flex justify-center">
-          <span className="rounded-full bg-plum-900/80 px-4 py-1.5 text-sm font-bold text-peach-200">{t("stage.youAreSharing")}</span>
+          <span className="rounded-full bg-cream-50/90 px-4 py-1.5 text-sm font-bold text-walnut-600 shadow-cozy">{t("stage.youAreSharing")}</span>
         </div>
       )}
 
       {kind === "none" && (
+        <>
+          <Lights />
+          <Ivy className="left-2 top-0 sm:left-10" />
+          <Ivy className="right-4 top-0 hidden sm:block" flip />
+          <BasketPlant className="-bottom-8 -right-8 hidden w-48 xl:block 2xl:w-60" />
+          <BasketPlant className="-bottom-10 -left-10 hidden w-32 xl:block" />
+        </>
+      )}
+
+      {kind === "none" && (
         <div className="absolute inset-0 overflow-y-auto">
-          <div className="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center gap-6 px-5 pb-60 pt-24 text-center text-cream-50">
+          <div className="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center gap-6 px-5 pb-60 pt-24 text-center text-walnut-800">
             {!snap.partner && isHost && <InviteCard roomId={roomId} password={hostPassword} />}
 
             {isHost ? (
@@ -77,36 +88,36 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
                 <div>
                   {snap.partner && <div className="animate-floaty text-5xl" aria-hidden>🍿</div>}
                   <h2 className="mt-3 text-3xl font-extrabold">{t("stage.hostTitle")}</h2>
-                  <p className="mt-1 text-peach-200">{snap.partner ? t("stage.hostReady", { name: snap.partner.name }) : t("stage.hostAlone")}</p>
+                  <p className="mt-1 text-walnut-500">{snap.partner ? t("stage.hostReady", { name: snap.partner.name }) : t("stage.hostAlone")}</p>
                 </div>
                 <div className="grid w-full gap-4 sm:grid-cols-2">
                   <button
                     onClick={() => void ctl.startScreenShare()}
                     disabled={!support.canShareScreen}
-                    className="group rounded-4xl bg-white/10 p-6 text-start ring-1 ring-white/10 transition hover:bg-white/15 disabled:opacity-50"
+                    className="group rounded-4xl bg-white/75 p-6 text-start shadow-cozy ring-1 ring-glow-200 transition hover:bg-white disabled:opacity-50"
                   >
-                    <ShareIcon width={34} height={34} className="text-peach-300" />
+                    <ShareIcon width={34} height={34} className="text-sage-600" />
                     <div className="mt-3 text-lg font-extrabold">{t("stage.shareTab")}</div>
-                    <p className="mt-1 text-sm text-peach-200">{support.canShareScreen ? t("stage.shareTabHint") : t("error.shareUnsupported")}</p>
-                    {support.canShareScreen && isMac() && <p className="mt-2 text-xs text-peach-300/80">{t("share.macNote")}</p>}
+                    <p className="mt-1 text-sm text-walnut-500">{support.canShareScreen ? t("stage.shareTabHint") : t("error.shareUnsupported")}</p>
+                    {support.canShareScreen && isMac() && <p className="mt-2 text-xs text-walnut-400">{t("share.macNote")}</p>}
                   </button>
                   <button
                     onClick={onPickFile}
                     disabled={!support.canCaptureFile}
-                    className="group rounded-4xl bg-white/10 p-6 text-start ring-1 ring-white/10 transition hover:bg-white/15 disabled:opacity-50"
+                    className="group rounded-4xl bg-white/75 p-6 text-start shadow-cozy ring-1 ring-glow-200 transition hover:bg-white disabled:opacity-50"
                   >
-                    <FileIcon width={34} height={34} className="text-peach-300" />
+                    <FileIcon width={34} height={34} className="text-sage-600" />
                     <div className="mt-3 text-lg font-extrabold">{t("stage.playFile")}</div>
-                    <p className="mt-1 text-sm text-peach-200">{support.canCaptureFile ? t("stage.playFileHint") : t("error.captureUnsupported")}</p>
+                    <p className="mt-1 text-sm text-walnut-500">{support.canCaptureFile ? t("stage.playFileHint") : t("error.captureUnsupported")}</p>
                   </button>
                 </div>
-                <p className="text-sm text-peach-300/80">{t("stage.dropHint")}</p>
+                <p className="text-sm text-walnut-400">{t("stage.dropHint")}</p>
               </>
             ) : (
               <div>
                 <div className="animate-floaty text-5xl" aria-hidden>🛋️</div>
                 <h2 className="mt-3 text-3xl font-extrabold">{t("stage.guestTitle")}</h2>
-                <p className="mt-1 text-peach-200">{snap.partner ? t("stage.guestWaiting", { name: snap.partner.name }) : t("stage.guestNoHost")}</p>
+                <p className="mt-1 text-walnut-500">{snap.partner ? t("stage.guestWaiting", { name: snap.partner.name }) : t("stage.guestNoHost")}</p>
               </div>
             )}
           </div>
@@ -114,7 +125,7 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
       )}
 
       {dragging && (
-        <div className="pointer-events-none absolute inset-4 z-30 grid place-items-center rounded-4xl border-4 border-dashed border-peach-300 bg-plum-900/80 text-2xl font-extrabold text-peach-200">
+        <div className="pointer-events-none absolute inset-4 z-30 grid place-items-center rounded-4xl border-4 border-dashed border-glow-300 bg-cream-50/90 text-2xl font-extrabold text-walnut-600">
           {t("stage.dropNow")}
         </div>
       )}

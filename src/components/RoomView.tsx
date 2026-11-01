@@ -8,6 +8,7 @@ import { KEYS, store } from "@/lib/client/storage";
 import { t } from "@/lib/i18n";
 import { Bubbles } from "./Bubbles";
 import { ConnDot } from "./ConnDot";
+import { CozyBackdrop } from "./Decor";
 import { ControlBar } from "./ControlBar";
 import { HeartBurst } from "./HeartBurst";
 import { Logo } from "./Logo";
@@ -141,9 +142,9 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
   // ---- states before / outside the live room ----
   if (!ctl || !snap || snap.phase === "connecting") {
     return (
-      <div className="grid min-h-screen place-items-center bg-plum-950 text-cream-50" role="status">
+      <div className="grid min-h-screen place-items-center bg-cream-100 text-walnut-800" role="status">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-peach-300 border-t-transparent" />
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-glow-300 border-t-transparent" />
           <p className="font-bold">{t("room.joining")}</p>
         </div>
       </div>
@@ -152,33 +153,33 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
 
   if (snap.phase === "ended") {
     return (
-      <Overlay>
+      <><CozyBackdrop /><Overlay>
         <div className="text-5xl" aria-hidden>🌙</div>
         <h1 className="mt-3 text-2xl font-extrabold">{t("room.endedTitle")}</h1>
-        <p className="mt-1 text-plum-500">{snap.role === "host" ? t("room.endedHost") : t("room.endedGuest")}</p>
+        <p className="mt-1 text-walnut-500">{snap.role === "host" ? t("room.endedHost") : t("room.endedGuest")}</p>
         <Link href="/" className="btn-primary mt-6">{t("room.home")}</Link>
-      </Overlay>
+      </Overlay></>
     );
   }
 
   if (snap.phase === "disconnected") {
     return (
-      <Overlay>
+      <><CozyBackdrop /><Overlay>
         <div className="text-5xl" aria-hidden>📡</div>
         <h1 className="mt-3 text-2xl font-extrabold">{t("room.disconnectedTitle")}</h1>
-        <p className="mt-1 text-plum-500">{snap.fatal?.message ?? t("error.dropped")}</p>
+        <p className="mt-1 text-walnut-500">{snap.fatal?.message ?? t("error.dropped")}</p>
         <div className="mt-6 flex justify-center gap-3">
           {snap.fatal?.code !== "room_not_found" && <button className="btn-primary" onClick={() => void ctl.rejoin()}>{t("room.rejoin")}</button>}
           <Link href="/" className="btn-soft">{t("room.home")}</Link>
         </div>
-      </Overlay>
+      </Overlay></>
     );
   }
 
   return (
     <div
       ref={rootRef}
-      className={`fixed inset-0 overflow-hidden bg-plum-950 text-cream-50 ${hasContent && playing && idle && !menuOpen ? "idle-hide-cursor" : ""}`}
+      className={`fixed inset-0 overflow-hidden bg-cream-100 text-walnut-800 ${hasContent && playing && idle && !menuOpen ? "idle-hide-cursor" : ""}`}
       onPointerMove={poke}
       onPointerDown={poke}
       onTouchStart={poke}
@@ -201,12 +202,12 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
       />
 
       {/* top bar */}
-      <div className={`absolute inset-x-0 top-0 z-30 flex flex-wrap items-start justify-between gap-3 bg-gradient-to-b from-plum-950/85 to-transparent px-4 pb-8 pt-3 transition-opacity duration-500 sm:px-6 ${controlsVisible ? "opacity-100" : "pointer-events-none opacity-0"}`}>
+      <div className={`absolute inset-x-0 top-0 z-30 flex flex-wrap items-start justify-between gap-3 px-4 pt-3 transition-opacity duration-500 sm:px-6 ${controlsVisible ? "opacity-100" : "pointer-events-none opacity-0"}`}>
         <div className="flex items-center gap-4">
-          <span className="hidden sm:block"><Logo dark /></span>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 rounded-full bg-white/10 px-4 py-1.5">
+          <span className="hidden sm:block"><Logo /></span>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 rounded-full bg-cream-50/90 px-4 py-1.5 shadow-cozy backdrop-blur-md">
             <ConnDot name={`${snap.self.name} ${t("common.youSuffix")}`} quality={snap.self.quality} />
-            {snap.partner ? <ConnDot name={snap.partner.name} quality={snap.partner.quality} /> : <span className="text-sm font-semibold text-peach-200">{t("room.waitingPartner")}</span>}
+            {snap.partner ? <ConnDot name={snap.partner.name} quality={snap.partner.quality} /> : <span className="text-sm font-semibold text-walnut-500">{t("room.waitingPartner")}</span>}
           </div>
         </div>
         {showStats && <StatsChip stats={snap.stats} />}
@@ -214,21 +215,21 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
 
       {snap.phase === "reconnecting" && (
         <div className="absolute inset-x-0 top-16 z-40 flex justify-center px-4" role="status">
-          <div className="flex items-center gap-3 rounded-full bg-peach-300 px-5 py-2.5 text-sm font-extrabold text-plum-900 shadow-cozy">
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-plum-900 border-t-transparent" />
+          <div className="flex items-center gap-3 rounded-full bg-glow-300 px-5 py-2.5 text-sm font-extrabold text-walnut-900 shadow-cozy">
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-walnut-900 border-t-transparent" />
             {t("room.reconnecting")}
           </div>
         </div>
       )}
 
       {snap.audioBlocked && (
-        <button className="absolute left-1/2 top-28 z-40 -translate-x-1/2 animate-popin rounded-full bg-peach-300 px-5 py-2.5 text-sm font-extrabold text-plum-900 shadow-cozy" onClick={() => void ctl.mixer.resume()}>
+        <button className="absolute left-1/2 top-28 z-40 -translate-x-1/2 animate-popin rounded-full bg-glow-300 px-5 py-2.5 text-sm font-extrabold text-walnut-900 shadow-cozy" onClick={() => void ctl.mixer.resume()}>
           🔈 {t("room.enableSound")}
         </button>
       )}
 
       {tip && (
-        <div className="absolute bottom-40 left-1/2 z-40 flex w-[min(92vw,28rem)] -translate-x-1/2 animate-popin items-center gap-3 rounded-3xl bg-plum-900/95 px-4 py-3 text-sm font-semibold shadow-cozy ring-1 ring-white/10 sm:bottom-32">
+        <div className="absolute bottom-40 left-1/2 z-40 flex w-[min(92vw,28rem)] -translate-x-1/2 animate-popin items-center gap-3 rounded-3xl bg-cream-50/95 px-4 py-3 text-sm font-semibold shadow-cozy ring-1 ring-walnut-800/10 sm:bottom-32">
           <span className="text-xl" aria-hidden>🎧</span>
           <span className="flex-1">{t("tip.headphones")}</span>
           <button className="btn-soft !px-3 !py-1.5 text-xs" onClick={() => { setTip(false); store.set(KEYS.headphoneTipSeen, true); }}>{t("tip.gotIt")}</button>
@@ -262,7 +263,7 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
 
 function Overlay({ children }: { children: React.ReactNode }) {
   return (
-    <main className="grid min-h-screen place-items-center px-5">
+    <main className="relative z-10 grid min-h-screen place-items-center px-5">
       <div className="card max-w-md text-center">{children}</div>
     </main>
   );

@@ -59,6 +59,9 @@ npm run typecheck && npm run lint && npm test
 ### Keyboard shortcuts
 `Space` play/pause · `M` mute · `V` camera · `B` bubbles · `F` fullscreen · `←`/`→` seek 10 s
 
+## Look & feel
+A light, lamp-lit "reading nook" theme: linen/oat creams, candle-glow amber, terracotta and wood accents, sage plants, fairy lights and trailing ivy (`src/components/Decor.tsx`). Colour tokens live in `tailwind.config.ts` (`cream`, `glow`, `clay`, `sage`, `walnut`); only the video letterbox is dark so movies look right.
+
 ## 4. Architecture
 ```
 src/
