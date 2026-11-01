@@ -1,3 +1,5 @@
+import { t } from "@/lib/i18n";
+
 /** Soft, decorative scenery: fairy lights, trailing ivy and a basket plant. Purely visual. */
 
 const bulbs = [6, 17, 28, 39, 50, 61, 72, 83, 94];
@@ -87,9 +89,61 @@ export function CozyBackdrop() {
       <Lights />
       <Ivy className="left-2 top-0 sm:left-8" />
       <Ivy className="right-3 top-0 hidden sm:block" flip />
+      <WallDecor />
+      <Lamp className="bottom-0 left-40 hidden h-56 w-24 2xl:block" />
       <BasketPlant className="-bottom-6 -right-10 hidden w-52 opacity-95 2xl:block" />
       <BasketPlant className="-bottom-10 -left-12 hidden w-36 opacity-90 2xl:block" />
       <div className="absolute -bottom-24 left-1/2 h-64 w-[70vw] -translate-x-1/2 rounded-full bg-glow-200/40 blur-3xl" />
+    </div>
+  );
+}
+
+/** Framed red football shirt: "JOY.E" 22. */
+export function JerseyFrame({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 160" role="img" aria-label={t("decor.jerseyLabel")} className={`pointer-events-none absolute drop-shadow-[0_10px_14px_rgba(59,44,35,0.35)] ${className}`}>
+      <rect x="2" y="2" width="116" height="156" rx="3" fill="#1f1a17" />
+      <rect x="9" y="9" width="102" height="142" fill="#f6efe4" />
+      {/* shirt */}
+      <path d="M32 22 L50 16 Q60 26 70 16 L88 22 L108 44 L94 56 L88 48 V140 H32 V48 L26 56 L12 44Z" fill="#c8202b" />
+      <path d="M50 16 Q60 28 70 16" fill="none" stroke="#7d1118" strokeWidth="2.5" />
+      <text x="60" y="66" textAnchor="middle" fontFamily="Impact, 'Arial Narrow', sans-serif" fontWeight="700" fontSize="12" letterSpacing="1" fill="#f1d9a0">JOY.E</text>
+      <text x="60" y="108" textAnchor="middle" fontFamily="Impact, 'Arial Narrow', sans-serif" fontWeight="700" fontSize="44" fill="#f1d9a0">22</text>
+    </svg>
+  );
+}
+
+/** Dusky-sky plaque with the favourite quote. */
+export function QuotePlaque({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`pointer-events-none absolute flex w-32 items-center justify-center rounded-[3px] p-3 text-center shadow-[0_10px_14px_rgba(59,44,35,0.3)] ring-4 ring-walnut-700/80 ${className}`}
+      style={{ aspectRatio: "3 / 4", background: "linear-gradient(170deg,#5d7488 0%,#8fa0a6 38%,#e8c98f 70%,#6d6a52 100%)" }}
+    >
+      <p className="font-serif text-[15px] font-bold italic leading-snug text-cream-50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{t("decor.quote")}</p>
+    </div>
+  );
+}
+
+/** Warm floor lamp with a soft glow. */
+export function Lamp({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 280" className={`pointer-events-none absolute ${className}`} aria-hidden>
+      <ellipse cx="60" cy="60" rx="58" ry="52" fill="#f8cf7f" opacity=".35" />
+      <rect x="57" y="92" width="6" height="170" fill="#e6d2b0" />
+      <ellipse cx="60" cy="266" rx="26" ry="6" fill="#d9c3a0" />
+      <path d="M30 96 L40 34 H80 L90 96Z" fill="#e0a95a" />
+      <path d="M76 34 L82 96" stroke="#5a3d28" strokeWidth="2.5" />
+    </svg>
+  );
+}
+
+/** Pictures on the "wall". Only where there is room beside the content. */
+export function WallDecor({ top = "top-28" }: { top?: string }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 hidden xl:block" aria-hidden={false}>
+      <QuotePlaque className={`left-[12%] ${top} -rotate-2`} />
+      <JerseyFrame className={`right-[12%] ${top} w-28 rotate-1`} />
     </div>
   );
 }

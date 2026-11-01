@@ -15,6 +15,10 @@ export const en = {
   "common.youSuffix": "(you)",
   "common.yourName": "Your name",
 
+  // wall decoration
+  "decor.quote": "Everything is beautiful in its time",
+  "decor.jerseyLabel": "Framed red football shirt: JOY.E, number 22",
+
   // landing
   "landing.badge": "Movie night, long distance ♥",
   "landing.title": "Watch together, even when you're apart.",

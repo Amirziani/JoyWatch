@@ -104,7 +104,10 @@ export function Landing() {
         </form>
       </section>
 
-      <footer className="mt-auto pt-10 text-center text-xs text-walnut-300">{t("landing.footer")}</footer>
+      <footer className="mt-auto pt-10 text-center">
+        <p className="font-serif text-base italic text-walnut-500">“{t("decor.quote")}”</p>
+        <p className="mt-2 text-xs text-walnut-400">{t("landing.footer")}</p>
+      </footer>
     </main>
     </>
   );
