@@ -886,6 +886,10 @@ export class SessionController {
         return t("error.network");
       case "bad_host_secret":
         return t("error.badHostKey");
+      case "livekit_auth":
+        return t("error.livekitAuth");
+      case "livekit_unreachable":
+        return t("error.livekitUnreachable");
       default:
         return t("error.connectFailed");
     }

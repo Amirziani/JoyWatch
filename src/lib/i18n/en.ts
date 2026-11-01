@@ -209,6 +209,8 @@ export const en = {
   "error.roomNotFound": "This room doesn't exist or has ended.",
   "error.tooManyAttempts": "Too many wrong passwords. Please wait a few minutes and try again.",
   "error.badHostKey": "This browser isn't recognised as the host of this room.",
+  "error.livekitAuth": "The server's LiveKit key or secret is wrong, so calls can't start. The site owner needs to re-enter the LiveKit API key and secret.",
+  "error.livekitUnreachable": "The server can't reach LiveKit. The site owner needs to check the LiveKit URL.",
   "error.connectFailed": "Couldn't connect to the call. Please try again.",
   "error.dropped": "The connection dropped and couldn't be restored.",
   "error.endFailed": "Couldn't end the room. Please try again.",

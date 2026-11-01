@@ -13,7 +13,16 @@ function client() {
   return { c, svc: new RoomServiceClient(httpUrl(c.url), c.apiKey, c.apiSecret) };
 }
 
-/** Throws room_full if two people are already connected. */
+/** LiveKit's Twirp errors carry an HTTP status and a code such as "not_found" or "unauthenticated". */
+function lkError(e: unknown): { status?: number; code?: string } {
+  const x = e as { status?: number; code?: string };
+  return { status: x?.status, code: x?.code };
+}
+
+/**
+ * Throws room_full if two people are already connected, and a clear error if our LiveKit
+ * credentials or URL are wrong (instead of letting the browser fail with a vague message).
+ */
 export async function ensureRoomWithCapacity(roomId: string, identity: string) {
   const { svc } = client();
   try {
@@ -24,11 +33,24 @@ export async function ensureRoomWithCapacity(roomId: string, identity: string) {
     }
   } catch (e) {
     if (e instanceof HttpError) throw e;
-    // Room not created yet (first joiner) or API hiccup: create it with a hard server-side limit.
+    const { status, code } = lkError(e);
+    if (status === 401 || status === 403 || code === "unauthenticated" || code === "permission_denied") {
+      console.error("[joywatch] LiveKit rejected LIVEKIT_API_KEY / LIVEKIT_API_SECRET");
+      throw new HttpError(502, "livekit_auth", "LiveKit rejected the API key or secret.");
+    }
+    if (code !== "not_found" && status !== 404) {
+      console.error("[joywatch] cannot reach LiveKit at LIVEKIT_URL:", e instanceof Error ? e.message : e);
+      throw new HttpError(502, "livekit_unreachable", "Can't reach LiveKit. Check LIVEKIT_URL.");
+    }
+    // Room doesn't exist yet (first joiner): created below with a hard server-side limit.
   }
   try {
     await svc.createRoom({ name: roomId, maxParticipants: MAX_PARTICIPANTS, emptyTimeout: 60 * 10 });
-  } catch {
+  } catch (e) {
+    const { status, code } = lkError(e);
+    if (status === 401 || status === 403 || code === "unauthenticated") {
+      throw new HttpError(502, "livekit_auth", "LiveKit rejected the API key or secret.");
+    }
     /* already exists: fine */
   }
 }
