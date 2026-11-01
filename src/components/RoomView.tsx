@@ -54,6 +54,17 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
     setTip(!store.get(KEYS.headphoneTipSeen, false));
   }, []);
 
+  // One-time headphone tip: never blocks anything, closes itself, and never comes back.
+  const dismissTip = useCallback(() => {
+    setTip(false);
+    store.set(KEYS.headphoneTipSeen, true);
+  }, []);
+  useEffect(() => {
+    if (!tip) return;
+    const id = setTimeout(dismissTip, 7000);
+    return () => clearTimeout(id);
+  }, [tip, dismissTip]);
+
   // ---- send the user back to the gate for credential problems ----
   const fatal = snap?.fatal;
   useEffect(() => {
@@ -223,16 +234,20 @@ export function RoomView({ roomId, creds, hostPassword, support, onExit }: Props
       )}
 
       {snap.audioBlocked && (
-        <button className="absolute left-1/2 top-28 z-40 -translate-x-1/2 animate-popin rounded-full bg-glow-300 px-5 py-2.5 text-sm font-extrabold text-walnut-900 shadow-cozy" onClick={() => void ctl.mixer.resume()}>
-          🔈 {t("room.enableSound")}
-        </button>
+        <div className="absolute inset-x-0 top-28 z-40 flex justify-center px-4">
+          <button className="animate-popin rounded-full bg-glow-300 px-5 py-2.5 text-sm font-extrabold text-walnut-900 shadow-cozy" onClick={() => void ctl.mixer.resume()}>
+            🔈 {t("room.enableSound")}
+          </button>
+        </div>
       )}
 
       {tip && (
-        <div className="absolute bottom-40 left-1/2 z-40 flex w-[min(92vw,28rem)] -translate-x-1/2 animate-popin items-center gap-3 rounded-3xl bg-cream-50/95 px-4 py-3 text-sm font-semibold shadow-cozy ring-1 ring-walnut-800/10 sm:bottom-32">
-          <span className="text-xl" aria-hidden>🎧</span>
-          <span className="flex-1">{t("tip.headphones")}</span>
-          <button className="btn-soft !px-3 !py-1.5 text-xs" onClick={() => { setTip(false); store.set(KEYS.headphoneTipSeen, true); }}>{t("tip.gotIt")}</button>
+        <div className="pointer-events-none absolute inset-x-0 top-16 z-40 flex justify-center px-4">
+          <div className="pointer-events-auto flex max-w-md animate-popin items-center gap-3 rounded-2xl bg-cream-50/95 px-4 py-3 text-sm font-semibold text-walnut-700 shadow-cozy ring-1 ring-walnut-800/10">
+            <span className="text-xl" aria-hidden>🎧</span>
+            <span className="flex-1">{t("tip.headphones")}</span>
+            <button className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-walnut-800/10 text-walnut-700 hover:bg-walnut-800/15" aria-label={t("common.close")} onClick={dismissTip}>✕</button>
+          </div>
         </div>
       )}
 

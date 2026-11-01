@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
+import { t } from "@/lib/i18n";
 
 /** Closes on outside click / Escape. Positioning is done by the `popover` class (opens upward). */
 export function Popover({ open, onClose, children, className = "" }: { open: boolean; onClose: () => void; children: ReactNode; className?: string }) {
@@ -20,7 +21,14 @@ export function Popover({ open, onClose, children, className = "" }: { open: boo
   if (!open) return null;
   return (
     <div ref={ref} role="dialog" className={`popover ${className}`}>
-      {children}
+      <button
+        className="absolute end-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-walnut-800/10 text-walnut-700 hover:bg-walnut-800/15 sm:hidden"
+        aria-label={t("common.close")}
+        onClick={onClose}
+      >
+        ✕
+      </button>
+      <div className="max-sm:pt-8">{children}</div>
     </div>
   );
 }

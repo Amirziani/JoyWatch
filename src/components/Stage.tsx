@@ -83,7 +83,6 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
         <div className="absolute inset-0 overflow-y-auto">
           <div className="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center gap-6 px-5 pb-60 pt-24 text-center text-walnut-800">
             <WallStrip />
-            {!snap.partner && isHost && <InviteCard roomId={roomId} password={hostPassword} />}
 
             {isHost ? (
               <>
@@ -114,6 +113,7 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
                   </button>
                 </div>
                 <p className="text-sm text-walnut-400">{t("stage.dropHint")}</p>
+                {!snap.partner && <InviteCard roomId={roomId} password={hostPassword} />}
               </>
             ) : (
               <div>

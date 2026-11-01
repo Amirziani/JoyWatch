@@ -10,6 +10,7 @@ export const en = {
 
   // common
   "common.dismiss": "Dismiss",
+  "common.close": "Close",
   "common.partner": "Your partner",
   "common.roomPassword": "Room password",
   "common.youSuffix": "(you)",
@@ -101,7 +102,7 @@ export const en = {
   // stage
   "stage.hostTitle": "What are we watching?",
   "stage.hostReady": "{name} is here and ready.",
-  "stage.hostAlone": "Send the invite, then pick something to watch.",
+  "stage.hostAlone": "No need to wait for your partner. Pick something and try it out now; invite them whenever you're ready.",
   "stage.shareTab": "Share a tab or window",
   "stage.shareTabHint": "Great for YouTube and other sites. Choose “Chrome Tab” and tick “Also share tab audio”.",
   "stage.playFile": "Play a video file",
@@ -189,7 +190,7 @@ export const en = {
   "invite.message": "Join me on JoyWatch ♥\nLink: {link}\nPassword: {password}",
 
   // tips + toasts
-  "tip.headphones": "Use headphones for the best sound; it stops the movie echoing into the call.",
+  "tip.headphones": "Tip: headphones give the best sound.",
   "tip.gotIt": "Got it",
   "toast.partnerJoined": "{name} joined",
   "toast.partnerLeft": "{name} left",
