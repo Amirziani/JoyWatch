@@ -1,0 +1,35 @@
+{
+  "name": "joywatch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cozy, private watch-together app for two.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.40.0",
+    "bcryptjs": "^3.0.3",
+    "livekit-client": "^2.23.0",
+    "livekit-server-sdk": "^2.19.2",
+    "next": "^15.5.28",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.2",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.28",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}
