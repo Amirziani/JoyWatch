@@ -6,7 +6,7 @@ import { checkBrowser, type BrowserSupport } from "@/lib/client/browser";
 import type { Creds } from "@/lib/client/session";
 import { KEYS, store, type HostCreds } from "@/lib/client/storage";
 import { t } from "@/lib/i18n";
-import { CozyBackdrop } from "./Decor";
+import { CozyBackdrop, WallStrip } from "./Decor";
 import { Logo } from "./Logo";
 import { RoomView } from "./RoomView";
 
@@ -90,6 +90,7 @@ export function RoomEntry({ roomId }: { roomId: string }) {
       <div className="mb-6 flex justify-center">
         <Link href="/" aria-label={t("app.name")}><Logo /></Link>
       </div>
+      <WallStrip className="mb-6" />
 
       {stage === "loading" && <div className="card text-center font-bold text-walnut-500" role="status">{t("gate.checking")}</div>}
 

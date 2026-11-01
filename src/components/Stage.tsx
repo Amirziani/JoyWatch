@@ -5,7 +5,7 @@ import type { BrowserSupport } from "@/lib/client/browser";
 import { isMac } from "@/lib/client/browser";
 import { t } from "@/lib/i18n";
 import { FileIcon, ShareIcon } from "./Icons";
-import { Ivy, Lights, Nook, WallDecor } from "./Decor";
+import { Ivy, Lights, Nook, WallDecor, WallStrip } from "./Decor";
 import { InviteCard } from "./Menus";
 import { TrackVideo } from "./TrackVideo";
 
@@ -82,6 +82,7 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
       {kind === "none" && (
         <div className="absolute inset-0 overflow-y-auto">
           <div className="mx-auto flex min-h-full max-w-3xl flex-col items-center justify-center gap-6 px-5 pb-60 pt-24 text-center text-walnut-800">
+            <WallStrip />
             {!snap.partner && isHost && <InviteCard roomId={roomId} password={hostPassword} />}
 
             {isHost ? (

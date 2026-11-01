@@ -97,9 +97,9 @@ export function CozyBackdrop() {
 }
 
 /** Framed red football shirt: "JOY.E" 22. */
-export function JerseyFrame({ className = "" }: { className?: string }) {
+export function JerseyFrame({ className = "", inline = false }: { className?: string; inline?: boolean }) {
   return (
-    <svg viewBox="0 0 120 160" role="img" aria-label={t("decor.jerseyLabel")} className={`pointer-events-none absolute drop-shadow-[0_10px_14px_rgba(59,44,35,0.35)] ${className}`}>
+    <svg viewBox="0 0 120 160" role="img" aria-label={t("decor.jerseyLabel")} className={`pointer-events-none ${inline ? "relative" : "absolute"} drop-shadow-[0_10px_14px_rgba(59,44,35,0.35)] ${className}`}>
       <rect x="2" y="2" width="116" height="156" rx="3" fill="#1f1a17" />
       <rect x="9" y="9" width="102" height="142" fill="#f6efe4" />
       {/* shirt */}
@@ -112,10 +112,10 @@ export function JerseyFrame({ className = "" }: { className?: string }) {
 }
 
 /** Dusky-sky plaque with the favourite quote. */
-export function QuotePlaque({ className = "" }: { className?: string }) {
+export function QuotePlaque({ className = "", inline = false }: { className?: string; inline?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute flex w-32 items-center justify-center rounded-[3px] p-3 text-center shadow-[0_10px_14px_rgba(59,44,35,0.3)] ring-4 ring-walnut-700/80 ${className}`}
+      className={`pointer-events-none ${inline ? "relative" : "absolute"} flex w-32 items-center justify-center rounded-[3px] p-3 text-center shadow-[0_10px_14px_rgba(59,44,35,0.3)] ring-4 ring-walnut-700/80 ${className}`}
       style={{ aspectRatio: "3 / 4", background: "linear-gradient(170deg,#5d7488 0%,#8fa0a6 38%,#e8c98f 70%,#6d6a52 100%)" }}
     >
       <p className="font-serif text-[15px] font-bold italic leading-snug text-cream-50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]">{t("decor.quote")}</p>
@@ -239,6 +239,16 @@ export function WallDecor({ top = "top-28" }: { top?: string }) {
     <div className="pointer-events-none absolute inset-0 hidden xl:block" aria-hidden={false}>
       <QuotePlaque className={`left-[12%] ${top} -rotate-2`} />
       <JerseyFrame className={`right-[12%] ${top} w-28 rotate-1`} />
+    </div>
+  );
+}
+
+/** The same two pictures as a little row, for screens too narrow to hang them on the wall. */
+export function WallStrip({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex items-end justify-center gap-6 xl:hidden ${className}`}>
+      <QuotePlaque inline className="!w-28 -rotate-2" />
+      <JerseyFrame inline className="w-24 rotate-1" />
     </div>
   );
 }

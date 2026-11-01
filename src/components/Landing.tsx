@@ -5,7 +5,7 @@ import { api, ApiError } from "@/lib/client/api";
 import { suggestPassword, parseRoomRef } from "@/lib/client/passwords";
 import { KEYS, store } from "@/lib/client/storage";
 import { t } from "@/lib/i18n";
-import { CozyBackdrop } from "./Decor";
+import { CozyBackdrop, WallStrip } from "./Decor";
 import { Logo } from "./Logo";
 import { ShuffleIcon } from "./Icons";
 
@@ -60,6 +60,8 @@ export function Landing() {
         <h1 className="text-4xl font-extrabold leading-tight text-walnut-800 sm:text-6xl">{t("landing.title")}</h1>
         <p className="mx-auto mt-4 max-w-xl text-lg text-walnut-500">{t("landing.subtitle")}</p>
       </section>
+
+      <WallStrip className="mt-8" />
 
       <section className="mt-10 grid gap-6 md:grid-cols-2">
         <form onSubmit={create} className="card" aria-labelledby="create-h">
