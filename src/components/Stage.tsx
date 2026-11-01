@@ -5,7 +5,7 @@ import type { BrowserSupport } from "@/lib/client/browser";
 import { isMac } from "@/lib/client/browser";
 import { t } from "@/lib/i18n";
 import { FileIcon, ShareIcon } from "./Icons";
-import { Ivy, BasketPlant, Lamp, Lights, WallDecor } from "./Decor";
+import { Ivy, Lights, Nook, WallDecor } from "./Decor";
 import { InviteCard } from "./Menus";
 import { TrackVideo } from "./TrackVideo";
 
@@ -74,9 +74,8 @@ export function Stage({ ctl, snap, support, roomId, hostPassword, onPickFile }: 
           <Ivy className="left-2 top-0 sm:left-10" />
           <Ivy className="right-4 top-0 hidden sm:block" flip />
           <WallDecor top="top-24" />
-          <Lamp className="bottom-0 left-36 hidden h-48 w-20 2xl:block" />
-          <BasketPlant className="-bottom-8 -right-8 hidden w-48 xl:block 2xl:w-60" />
-          <BasketPlant className="-bottom-10 -left-10 hidden w-32 xl:block" />
+          <Nook />
+
         </>
       )}
 
